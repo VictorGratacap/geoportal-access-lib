@@ -333,7 +333,7 @@ Gp.Services.isoCurve({
 
 <a id="getConfig"/>
 
-## Obtenir des informations relatives à un contrat d'accès au Géoportail
+## Obtenir des informations relatives à une clé générique de la Geoplateforme
 
 La fonction [Gp.Services.getConfig()](http://ignf.github.io/geoportal-access-lib/latest/jsdoc/module-Services.html#~getConfig) permet de consulter les ressources disponibles pour une clef d'accès à la plateforme et d'avoir les paramètres permettant leur utilisation. Elle prend en paramètres :
 
@@ -341,17 +341,20 @@ La fonction [Gp.Services.getConfig()](http://ignf.github.io/geoportal-access-lib
 
 * d'autres paramètres éventuels à passer au service...
 
-* la **fonction de traitement des résultats** qui sera appelée lorsqu'ils seront reçus. Cette fonction prend en paramètres un objet de type : [Gp.Services.GetConfigResponse](http://ignf.github.io/geoportal-access-lib/latest/jsdoc/Gp.Services.GetConfigResponse.html). Les informations portées par cet objet sont aussi enregistrées en variable globale de l'application sous le nom : Gp.Config.
+* Les informations portées par cet objet sont aussi enregistrées en variable globale de l'application sous le nom : Gp.Config.
 
 
 ``` javascript
-Gp.Services.getConfig({
-    apiKey : "carte", // clef d'accès à la plateforme
-    onSuccess : function (result) {
-        // exploitation des resultats : "result" est de type Gp.Services.GetConfigResponse
-        ...
+var options = {
+    apiKey : "cartes,ortho",
+    onSuccess : function (response) {
+        print(response);
+    },
+    onFailure : function (error) {
+        print(error.message);
     }
-});
+};
+Gp.Services.getConfig(options);
 ```
 
 **Exemple d'utilisation** [![jsFiddle](http://jsfiddle.net/img/embeddable/logo-dark.png)](http://jsfiddle.net/ignfgeoportail/0hsanbv2/embedded/result,js,html,css/)
